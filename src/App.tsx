@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 function App(): JSX.Element {
   const [password, setPassword] = useState<string>('');
+  const [passwordHistory, setPasswordHistory] = useState<string[]>([]);
 
   const generatePassword = () => {
     const length = 10; // Length of the password
@@ -12,6 +13,7 @@ function App(): JSX.Element {
       newPassword += charset[randomIndex];
     }
     setPassword(newPassword);
+    setPasswordHistory(prevHistory => [newPassword, ...prevHistory.slice(0, 9)]);
   };
 
   return (
@@ -30,6 +32,14 @@ function App(): JSX.Element {
           Your random password will appear here:
           <span className="bg-gray-200 p-2 ml-2 rounded">{password}</span>
         </p>
+        <div>
+          <h2>Last 10 Generated Passwords:</h2>
+          <ul>
+            {passwordHistory.map((password, index) => (
+              <li key={index}>{password}</li>
+            ))}
+          </ul>
+        </div>
       </main>
       <footer className="bg-gray-800 text-white py-4 text-center">
         <p>&copy; 2021</p>
