@@ -5,7 +5,7 @@ function App(): JSX.Element {
   const [passwordHistory, setPasswordHistory] = useState<string[]>([]);
 
   const generatePassword = () => {
-    const length = 10; // Length of the password
+    const length = 15; // Length of the password
     const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // Characters to include in the password
     let newPassword = '';
     for (let i = 0; i < length; i++) {
@@ -13,7 +13,7 @@ function App(): JSX.Element {
       newPassword += charset[randomIndex];
     }
     setPassword(newPassword);
-    setPasswordHistory(prevHistory => [newPassword, ...prevHistory.slice(0, 9)]);
+    setPasswordHistory(prevHistory => [newPassword, ...prevHistory.slice(0, 14)]);
   };
 
   return (
