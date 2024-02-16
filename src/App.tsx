@@ -8,18 +8,27 @@ function App(): JSX.Element {
   const [passwordStrength, setPasswordStrength] = useState<number>(0); // State to manage password strength
 
   const generatePassword = () => {
+<<<<<<< HEAD
     const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+=======
+    const length = 15; // Length of the password
+    const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // Characters to include in the password
+>>>>>>> 75a208299acd2a51c34b80b57cf489a86a6df1d5
     let newPassword = '';
     for (let i = 0; i < passwordLength; i++) {
       const randomIndex = Math.floor(Math.random() * charset.length);
       newPassword += charset[randomIndex];
     }
     setPassword(newPassword);
+<<<<<<< HEAD
     setPasswordHistory(prevHistory => [newPassword, ...prevHistory.slice(0, 9)]);
 
     // Calculate password strength using zxcvbn
     const strength = zxcvbn(newPassword).score; // Score ranges from 0 to 4
     setPasswordStrength(strength);
+=======
+    setPasswordHistory(prevHistory => [newPassword, ...prevHistory.slice(0, 14)]);
+>>>>>>> 75a208299acd2a51c34b80b57cf489a86a6df1d5
   };
 
   const handleLengthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
