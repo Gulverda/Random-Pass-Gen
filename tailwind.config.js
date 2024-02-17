@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'JetBrains': ['JetBrains Mono', 'monospace'],
+      },
       colors: {
         backgroundForBack: '#18171f',
         bgMain: '#24232c',
