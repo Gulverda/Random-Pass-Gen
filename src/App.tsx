@@ -105,21 +105,26 @@ function App(): JSX.Element {
       <div style={{ width: '540px', height: '528px' }} className="bg-bgMain mt-6 p-8">
         <main className="flex-1 flex flex-col justify-center items-center">
         <div className="flex flex-col items-left w-full">
-        <label htmlFor="passwordLength" className="mb-2">Character Length:</label>
-<input
-  type="range"
-  id="passwordLength"
-  name="passwordLength"
-  min="6"
-  max="20"
-  value={passwordLength}
-  onChange={handleLengthChange}
-  onMouseMove={handleMouseMove}
-  className="w-full"
-/>
+  <label htmlFor="passwordLength" className="mb-2 flex justify-between items-center">
+    <span style={{fontSize: '18px', fontWeight: '700'}} className="text-secondaryText font-JetBrains">Character Length:</span>
+    <span style={{fontSize: '32px'}} className="text-strong font-JetBrains">{passwordLength}</span>
+  </label>
+  <div className="flex items-center justify-between mt-4">
+    <input
+      type="range"
+      id="passwordLength"
+      name="passwordLength"
+      min="0"
+      max="20"
+      value={passwordLength}
+      onChange={handleLengthChange}
+      onMouseMove={handleMouseMove}
+      className="w-full mr-4"
+    />
+  </div>
+</div>
 
 
-          </div>
           <div className="flex-col justify-between w-full mt-8">
             <label className="flex items-center">
               <input
@@ -205,18 +210,18 @@ function App(): JSX.Element {
           <button style={{fontWeight: '700',fontSize: '18px'}} className="bg-strong hover:bg-green-300 font-JetBrains text-backgroundForBack w-full py-5" onClick={generatePassword}>
             Generate
           </button>
-          <div>
+          {/* <div>
             <h2>Last 10 Generated Passwords:</h2>
             <ul>
               {passwordHistory.map((password, index) => (
                 <li key={index}>{password}</li>
               ))}
             </ul>
-          </div>
+          </div> */}
         </main>
-        <footer className="bg-gray-800 text-white py-4 text-center">
+        {/* <footer className="bg-gray-800 text-white py-4 text-center">
           <p>&copy; 2021</p>
-        </footer>
+        </footer> */}
       </div>
     </div>
   );

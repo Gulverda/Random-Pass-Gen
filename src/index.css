@@ -22,3 +22,11 @@ input[type="range"] {
     cursor: pointer;
   }
   
+
+  .square {
+    width: 20px; /* Adjust size as needed */
+    height: 20px; /* Adjust size as needed */
+    margin-right: 5px; /* Adjust spacing as needed */
+    border: 1px solid #ccc; /* Add border for better visibility */
+  }
+  
