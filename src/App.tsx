@@ -71,18 +71,14 @@ function App(): JSX.Element {
 
   const passwordStrengthColor = () => {
     switch (passwordStrength) {
-      case 0:
-        return 'text-red-500';
       case 1:
-        return 'text-orange-500';
+        return 'text-tooWeak';
       case 2:
-        return 'text-yellow-500';
+        return 'text-weak';
       case 3:
-        return 'text-green-500';
+        return 'text-medium';
       case 4:
-        return 'text-blue-500';
-      default:
-        return 'text-black';
+        return 'text-strong';
     }
   }
 
@@ -205,8 +201,17 @@ function App(): JSX.Element {
           </div>
 
           <p className={`my-7 ${passwordStrengthColor()}`}>
-              Password Strength: {passwordStrength}/4
-            </p>
+  Password Strength: 
+  <div className="password-strength">
+    <div className={`strength-block ${passwordStrength >= 1 ? 'filled' : ''} strength-1`}></div>
+    <div className={`strength-block ${passwordStrength >= 2 ? 'filled' : ''} strength-2`}></div>
+    <div className={`strength-block ${passwordStrength >= 3 ? 'filled' : ''} strength-3`}></div>
+    <div className={`strength-block ${passwordStrength >= 4 ? 'filled' : ''} strength-4`}></div>
+  </div>
+</p>
+
+
+
           <button style={{fontWeight: '700',fontSize: '18px'}} className="bg-strong hover:bg-green-300 font-JetBrains text-backgroundForBack w-full py-5" onClick={generatePassword}>
             Generate
           </button>

@@ -29,4 +29,36 @@ input[type="range"] {
     margin-right: 5px; /* Adjust spacing as needed */
     border: 1px solid #ccc; /* Add border for better visibility */
   }
+
+  
+  .password-strength {
+    display: flex;
+  }
+  
+  .strength-block {
+    width: 20px; /* Adjust the width of each block */
+    height: 20px; /* Adjust the height of each block */
+    margin-right: 5px; /* Adjust the spacing between blocks */
+    border: 1px solid #000; /* Border for each block */
+  }
+  
+  .strength-block.filled {
+    background-color: #000; /* Default color for filled blocks */
+  }
+  
+  .strength-1 {
+    background-color: #FF0000; /* Color for strength level 1 */
+  }
+  
+  .strength-2 {
+    background-color: #FFA500; /* Color for strength level 2 */
+  }
+  
+  .strength-3 {
+    background-color: #FFFF00; /* Color for strength level 3 */
+  }
+  
+  .strength-4 {
+    background-color: #008000; /* Color for strength level 4 */
+  }
   
