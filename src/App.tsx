@@ -69,29 +69,6 @@ function App(): JSX.Element {
     alert('Password copied to clipboard!');
   };
 
-  const passwordStrengthColor = () => {
-    switch (passwordStrength) {
-      case 1:
-        return 'text-tooWeak';
-      case 2:
-        return 'text-weak';
-      case 3:
-        return 'text-medium';
-      case 4:
-        return 'text-strong';
-    }
-  }
-
-  const cube = {
-    width: '24px',
-    height: '24px',
-    fill: 'none',
-    stroke: 'currentColor',
-    strokeWidth: '32',
-    strokeLinecap: 'round',
-    strokeLinejoin: 'round'
-  }
-
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-backgroundForBack">
       <header className="text-textColor">
@@ -120,7 +97,7 @@ function App(): JSX.Element {
                 type="range"
                 id="passwordLength"
                 name="passwordLength"
-                min="0"
+                min="4"
                 max="20"
                 value={passwordLength}
                 onChange={handleLengthChange}
@@ -209,15 +186,26 @@ function App(): JSX.Element {
 
             </label>
           </div>
-          <div className="flex items-center justify-between mt-8 w-full">
+          {/* <div className="flex items-center justify-between mt-8 w-full">
             <p style={{ fontSize: '18px', fontWeight: '700' }} className="text-textColor font-JetBrains">Password Strength:</p>
             <p className={`my-7 ${passwordStrengthColor()}`}>
               {passwordStrength === 1 ? '■' : passwordStrength === 2 ? '■■' : passwordStrength === 3 ? '■■■' : '■■■■'}
             </p>
+          </div> */}
+
+          <div className="flex items-center justify-between mt-10 w-full">
+            <p style={{ fontSize: '18px', fontWeight: '700' }} className="text-textColor font-JetBrains">STRENGTH</p>
+            <div className="flex items-center">
+              <div className="text-left pr-4 text-textColor font-JetBrains" style={{ fontSize: '24px', fontWeight: '700' }}>
+                {passwordStrength === 1 ? 'TOO WEAK!' : passwordStrength === 2 ? 'WEAK' : passwordStrength === 3 ? 'MEDIUM' : passwordStrength === 4 ? 'STRONG' : ''}
+              </div>
+              <div className={`cube ${passwordStrength <= 1 ? 'low-strength' : passwordStrength <= 2 ? 'weak-strength' : passwordStrength <= 3 ? 'average-strength' : 'strong-strength'}`}></div>
+              <div className={`cube ${passwordStrength <= 1 ? '' : passwordStrength <= 2 ? 'weak-strength' : passwordStrength <= 3 ? 'average-strength' : 'strong-strength'}`}></div>
+              <div className={`cube ${passwordStrength <= 1 ? '' : passwordStrength <= 2 ? '' : passwordStrength <= 3 ? 'average-strength' : 'strong-strength'}`}></div>
+              <div className={`cube ${passwordStrength <= 1 ? '' : passwordStrength <= 2 ? '' : passwordStrength <= 3 ? '' : 'strong-strength'}`}></div>
+            </div>
           </div>
-
-
-          <button style={{ fontWeight: '700', fontSize: '18px' }} className="bg-strong hover:bg-green-300 font-JetBrains text-backgroundForBack w-full py-5" onClick={generatePassword}>
+          <button style={{ fontWeight: '700', fontSize: '18px' }} className="bg-strong hover:bg-green-300 font-JetBrains text-backgroundForBack w-full py-5 my-10" onClick={generatePassword}>
             Generate
           </button>
           {/* <div>

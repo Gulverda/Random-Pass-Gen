@@ -21,44 +21,37 @@ input[type="range"] {
     border-radius: 50%;
     cursor: pointer;
   }
+
+  .cube {
+    width: 10px;
+    height: 28px;
+    border: 2px solid #E6E5EA;
+    margin-right: 8px;
+    background-color: transparent; /* Default color */
+  }
+
+  .low-strength {
+    background-color: #F64A4A;
+    border-color: #F64A4A;
+  }
+  
+  .weak-strength {
+    background-color: #FB7C58;
+    border-color: #FB7C58;
+  }
+  
+  .average-strength {
+    background-color: #F8CD65;
+    border-color: #F8CD65;
+  }
+  
+  .strong-strength {
+    background-color: #A4FFAF;
+    border-color: #A4FFAF;
+  }
   
 
-  .square {
-    width: 20px; /* Adjust size as needed */
-    height: 20px; /* Adjust size as needed */
-    margin-right: 5px; /* Adjust spacing as needed */
-    border: 1px solid #ccc; /* Add border for better visibility */
-  }
-
   
-  .password-strength {
-    display: flex;
-  }
   
-  .strength-block {
-    width: 20px; /* Adjust the width of each block */
-    height: 20px; /* Adjust the height of each block */
-    margin-right: 5px; /* Adjust the spacing between blocks */
-    border: 1px solid #000; /* Border for each block */
-  }
   
-  .strength-block.filled {
-    background-color: #000; /* Default color for filled blocks */
-  }
-  
-  .strength-1 {
-    background-color: #FF0000; /* Color for strength level 1 */
-  }
-  
-  .strength-2 {
-    background-color: #FFA500; /* Color for strength level 2 */
-  }
-  
-  .strength-3 {
-    background-color: #FFFF00; /* Color for strength level 3 */
-  }
-  
-  .strength-4 {
-    background-color: #008000; /* Color for strength level 4 */
-  }
   
