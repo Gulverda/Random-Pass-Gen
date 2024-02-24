@@ -74,7 +74,7 @@ function App(): JSX.Element {
       <header className="text-textColor">
         <h1 style={{ fontSize: '24px' }}>Password Generator</h1>
       </header>
-      <div style={{ width: '540px', height: '80px' }} className="bg-bgMain flex items-center text-left justify-between mt-8 pl-8 pr-8">
+      <div style={{ width: '100%', maxWidth: '540px', height: '80px' }} className="bg-bgMain flex items-center text-left justify-between mt-8 pl-8 pr-8 md:flex-row md:w-3/4 lg:w-2/3">
         <p className="my-4">
           <span style={{ fontSize: '32px', fontFamily: 'JetBrains Mono' }} className="text-secondaryText text-left">{password}</span>
         </p>
@@ -85,7 +85,7 @@ function App(): JSX.Element {
 
         </button>
       </div>
-      <div style={{ width: '540px', height: '528px' }} className="bg-bgMain mt-6 p-8">
+      <div style={{ width: '100%', maxWidth: '540px', height: '590px' }} className="bg-bgMain mt-6 p-8 md:flex-row md:w-3/4 lg:w-2/3">
         <main className="flex-1 flex flex-col justify-center items-center">
           <div className="flex flex-col items-left w-full">
             <label htmlFor="passwordLength" className="mb-2 flex justify-between items-center">
@@ -193,10 +193,10 @@ function App(): JSX.Element {
             </p>
           </div> */}
 
-          <div className="flex items-center justify-between mt-10 w-full">
+          <div className="flex items-center justify-between mt-10 w-full bg-backgroundForBack p-8">
             <p style={{ fontSize: '18px', fontWeight: '700' }} className="text-textColor font-JetBrains">STRENGTH</p>
             <div className="flex items-center">
-              <div className="text-left pr-4 text-textColor font-JetBrains" style={{ fontSize: '24px', fontWeight: '700' }}>
+              <div className="text-left pr-4 text-textColor font-JetBrains" style={{ fontSize: '24px', fontWeight: '700' }}> 
                 {passwordStrength === 1 ? 'TOO WEAK!' : passwordStrength === 2 ? 'WEAK' : passwordStrength === 3 ? 'MEDIUM' : passwordStrength === 4 ? 'STRONG' : ''}
               </div>
               <div className={`cube ${passwordStrength <= 1 ? 'low-strength' : passwordStrength <= 2 ? 'weak-strength' : passwordStrength <= 3 ? 'average-strength' : 'strong-strength'}`}></div>
@@ -205,8 +205,12 @@ function App(): JSX.Element {
               <div className={`cube ${passwordStrength <= 1 ? '' : passwordStrength <= 2 ? '' : passwordStrength <= 3 ? '' : 'strong-strength'}`}></div>
             </div>
           </div>
-          <button style={{ fontWeight: '700', fontSize: '18px' }} className="bg-strong hover:bg-green-300 font-JetBrains text-backgroundForBack w-full py-5 my-10" onClick={generatePassword}>
+          <button style={{ fontWeight: '700', fontSize: '18px' }} className="flex justify-around items-center bg-strong hover:bg-green-300 font-JetBrains text-backgroundForBack w-full py-5 my-10" onClick={generatePassword}>
             Generate
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.10547 12L11.1054 6.00002L5.10547 0L3.84045 1.26501L7.68094 5.10547L0 5.10547V6.8946L7.68094 6.8946L3.84045 10.735L5.10547 12Z" fill="#24232C" />
+            </svg>
+
           </button>
           {/* <div>
             <h2>Last 10 Generated Passwords:</h2>
