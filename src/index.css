@@ -2,13 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #18171F;
+}
 
 input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
+    display: flex;
+    justify-content: center;
     height: 8px;
-    background: linear-gradient(to right, #A4FFAF 0%, #A4FFAF 50%, #18171F 50%, #18171F 100%);
+    background: linear-gradient(to right, #A4FFAF 0%, #A4FFAF 70%, #18171F 50%, #18171F 100%);
     outline: none;
   }
   
