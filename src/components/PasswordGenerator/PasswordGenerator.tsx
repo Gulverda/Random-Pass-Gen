@@ -251,7 +251,7 @@ function PasswordGenerator(): JSX.Element {
           </div> */}
         </main>
         <footer className="text-white py-4 text-center">
-  <p className="text-sm">&copy; 2021</p>
+  <p className="text-sm">&copy; 2024</p>
 </footer>
 
       </div>
