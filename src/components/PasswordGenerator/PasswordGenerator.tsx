@@ -250,9 +250,10 @@ function PasswordGenerator(): JSX.Element {
             </ul>
           </div> */}
         </main>
-        {/* <footer className="bg-gray-800 text-white py-4 text-center">
-          <p>&copy; 2021</p>
-        </footer> */}
+        <footer className="text-white py-4 text-center">
+  <p className="text-sm">&copy; 2021</p>
+</footer>
+
       </div>
     </div>
   );
