@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 function PasswordGenerator(): JSX.Element {
   const [password, setPassword] = useState<string>('');
-  const [passwordHistory, setPasswordHistory] = useState<string[]>([]);
+  // const [passwordHistory, setPasswordHistory] = useState<string[]>([]);
   const [passwordLength, setPasswordLength] = useState<number>(15); // State to manage password length
   const [passwordStrength, setPasswordStrength] = useState<number>(0); // State to manage password strength
   const [includeUppercase, setIncludeUppercase] = useState<boolean>(true);
@@ -25,7 +25,7 @@ function PasswordGenerator(): JSX.Element {
       newPassword += charset[randomIndex];
     }
     setPassword(newPassword);
-    setPasswordHistory(prevHistory => [newPassword, ...prevHistory.slice(0, 9)]);
+    // setPasswordHistory(prevHistory => [newPassword, ...prevHistory.slice(0, 9)]);
 
     // Calculate password strength using zxcvbn
     const strength = zxcvbn(newPassword).score; // Score ranges from 0 to 4
