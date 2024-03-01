@@ -13,6 +13,11 @@ function PasswordGenerator(): JSX.Element {
   const [includeSymbols, setIncludeSymbols] = useState<boolean>(false); // Initially false
 
   const generatePassword = () => {
+    if (!includeUppercase && !includeLowercase && !includeNumbers && !includeSymbols) {
+      alert('Please choose at least one option for password generation.');
+      return; // Exit the function early
+    }
+    
     let charset = '';
     if (includeUppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     if (includeLowercase) charset += 'abcdefghijklmnopqrstuvwxyz';
