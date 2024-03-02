@@ -4,13 +4,14 @@ import styled from 'styled-components';
 
 function PasswordGenerator(): JSX.Element {
   const [password, setPassword] = useState<string>('');
-  // const [passwordHistory, setPasswordHistory] = useState<string[]>([]);
-  const [passwordLength, setPasswordLength] = useState<number>(15); // State to manage password length
-  const [passwordStrength, setPasswordStrength] = useState<number>(0); // State to manage password strength
+  const [passwordHistory, setPasswordHistory] = useState<string[]>([]);
+  const [passwordLength, setPasswordLength] = useState<number>(15);
+  const [passwordStrength, setPasswordStrength] = useState<number>(0);
   const [includeUppercase, setIncludeUppercase] = useState<boolean>(true);
   const [includeLowercase, setIncludeLowercase] = useState<boolean>(true);
   const [includeNumbers, setIncludeNumbers] = useState<boolean>(true);
-  const [includeSymbols, setIncludeSymbols] = useState<boolean>(false); // Initially false
+  const [includeSymbols, setIncludeSymbols] = useState<boolean>(false);
+  const [showHistoryModal, setShowHistoryModal] = useState<boolean>(false);
 
   const generatePassword = () => {
     if (!includeUppercase && !includeLowercase && !includeNumbers && !includeSymbols) {
@@ -30,7 +31,7 @@ function PasswordGenerator(): JSX.Element {
       newPassword += charset[randomIndex];
     }
     setPassword(newPassword);
-    // setPasswordHistory(prevHistory => [newPassword, ...prevHistory.slice(0, 9)]);
+    setPasswordHistory(prevHistory => [newPassword, ...prevHistory.slice(0, 9)]);
 
     // Calculate password strength using zxcvbn
     const strength = zxcvbn(newPassword).score; // Score ranges from 0 to 4
@@ -84,6 +85,10 @@ function PasswordGenerator(): JSX.Element {
     }
   };
 
+  const toggleHistoryModal = () => {
+    setShowHistoryModal(!showHistoryModal);
+  };
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(password);
     alert('Password copied to clipboard!');
@@ -98,6 +103,37 @@ function PasswordGenerator(): JSX.Element {
   }
 `;
 
+const StyledModalBackdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledModalContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+`;
+
+const CloseButton = styled.button`
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #d32f2f;
+  }
+`;
+
 
 
   return (
@@ -108,11 +144,18 @@ function PasswordGenerator(): JSX.Element {
   <p className="my-4">
   <span className="text-secondaryText text-left text-lg md:text-xl lg:text-2xl xl:text-3xl font-JetBrains"> {password} </span>
   </p>
+  <div className="flex gap-5">
   <button onClick={copyToClipboard}>
     <svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fillRule="evenodd" clipRule="evenodd" d="M17.909 0.659016L20.341 3.09098C20.763 3.51294 21 4.08523 21 4.68197V17.25C21 18.4926 19.9926 19.5 18.75 19.5H15V21.75C15 22.9926 13.9926 24 12.75 24H2.25C1.00734 24 0 22.9926 0 21.75V6.75C0 5.50734 1.00734 4.5 2.25 4.5H6V2.25C6 1.00734 7.00734 0 8.25 0H16.3181C16.9147 3.12036e-06 17.4871 0.237058 17.909 0.659016ZM2.53126 21.75H12.4687C12.5434 21.75 12.6149 21.7204 12.6677 21.6677C12.7204 21.6149 12.75 21.5434 12.75 21.4687V19.5H8.25C7.00734 19.5 6 18.4926 6 17.25V6.75H2.53126C2.45665 6.75 2.38512 6.77963 2.33238 6.83238C2.27963 6.88512 2.25 6.95665 2.25 7.03126V21.4687C2.25 21.5434 2.27963 21.6149 2.33238 21.6677C2.38512 21.7204 2.45665 21.75 2.53126 21.75ZM18.4687 17.25H8.53126C8.45665 17.25 8.38512 17.2204 8.33238 17.1677C8.27963 17.1149 8.25 17.0434 8.25 16.9687V2.53126C8.25 2.45665 8.27963 2.38512 8.33238 2.33238C8.38512 2.27963 8.45665 2.25 8.53126 2.25H13.5V6.375C13.5 6.99632 14.0036 7.5 14.625 7.5H18.75V16.9687C18.75 17.0434 18.7204 17.1149 18.6677 17.1677C18.6149 17.2204 18.5434 17.25 18.4687 17.25ZM15.75 5.25H18.75V4.7985C18.75 4.76156 18.7427 4.72499 18.7286 4.69086C18.7145 4.65673 18.6937 4.62572 18.6677 4.59961L16.4004 2.33236C16.3476 2.27963 16.2761 2.25 16.2014 2.25H15.75V5.25Z" fill="#A4FFAF" />
     </svg>
   </button>
+  <button onClick={toggleHistoryModal} className="history-button">
+  <svg width="26px" height="26px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
+<g id="SVGRepo_iconCarrier"> <g fill="#a4ffaf"> <path d="M1.5 1.25a.75.75 0 011.5 0v1.851A7 7 0 111 8a.75.75 0 011.5 0 5.5 5.5 0 101.725-4H5.75a.75.75 0 010 1.5h-3.5a.75.75 0 01-.75-.75v-3.5z"/> <path d="M8.25 4a.75.75 0 01.75.75v3.763l1.805.802a.75.75 0 01-.61 1.37l-2.25-1A.75.75 0 017.5 9V4.75A.75.75 0 018.25 4z"/> </g> </g>
+</svg>
+</button>
+  </div>
 </div>
 
       <div style={{ width: '100%', maxWidth: '540px', height: '590px' }} className="bg-bgMain mt-6 p-8 md:flex-row md:w-3/4 lg:w-2/3">
@@ -246,14 +289,19 @@ function PasswordGenerator(): JSX.Element {
             </svg>
 
           </button>
-          {/* <div>
-            <h2>Last 10 Generated Passwords:</h2>
+          {showHistoryModal && (
+        <StyledModalBackdrop>
+          <StyledModalContent>
+            <h2>Password History</h2>
             <ul>
               {passwordHistory.map((password, index) => (
                 <li key={index}>{password}</li>
               ))}
             </ul>
-          </div> */}
+            <CloseButton onClick={toggleHistoryModal}>Close</CloseButton>
+          </StyledModalContent>
+        </StyledModalBackdrop>
+      )}
         </main>
         <footer className="text-white py-4 text-center">
   <p className="text-sm">&copy; 2024</p>
