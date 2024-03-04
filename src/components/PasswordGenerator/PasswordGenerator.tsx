@@ -116,21 +116,38 @@ const StyledModalBackdrop = styled.div`
 `;
 
 const StyledModalContent = styled.div`
-  background-color: white;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background-color: white;
+  max-width: 500px;
+  height: 450px;
+  background-color: #18171F;
+  width: 100%;
   padding: 20px;
+  border: 1px solid #a4ffaf;
   border-radius: 8px;
+  text-align: center;
+  color: #e6e5ea;
+  gap: 10px;
+  font-size: 16px;
 `;
 
 const CloseButton = styled.button`
-  background-color: #f44336;
-  color: white;
+  background-color: #a4ffaf;
+  color: #24232c;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
   border: none;
+  width: 100%;
+  margin-top: 20px;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
   &:hover {
-    background-color: #d32f2f;
+    background-color: rgb(134, 239, 172);
   }
 `;
 
@@ -292,8 +309,8 @@ const CloseButton = styled.button`
           {showHistoryModal && (
         <StyledModalBackdrop>
           <StyledModalContent>
-            <h2>Password History</h2>
-            <ul>
+            <h2 style={{fontSize: '24px', color: '#817d92'}}>Password History</h2>
+            <ul style={{display: 'grid', gap: '5px'}}>
               {passwordHistory.map((password, index) => (
                 <li key={index}>{password}</li>
               ))}
